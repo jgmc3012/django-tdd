@@ -45,3 +45,31 @@ heroku run python manage.py migrate
 
 - **list the 2 slowest tests:** 
 `docker-compose exec movies pytest  --durations=2`
+
+- **Run test with coverage**
+`docker-compose exec movies pytest -p no:warnings --cov=. --cov-report html`
+
+## Code Quality Style
+### Run code review
+`docker-compose exec movies flake8 .`
+
+### Format code 
+- Check
+`docker-compose exec movies black --check --exclude=migrations .`
+
+- Format
+`docker-compose exec movies black --exclude=migrations .`
+
+[More option](https://black.readthedocs.io/en/stable/installation_and_usage.html#command-line-options)
+
+### Check imports
+```
+# Check-only
+docker-compose exec movies /bin/sh -c "isort ./*/*.py --check-only"
+
+# Diff
+docker-compose exec movies /bin/sh -c "isort ./*/*.py --diff"
+
+# Apply Changes
+docker-compose exec movies /bin/sh -c "isort ./*/*.py"
+```
