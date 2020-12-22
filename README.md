@@ -1,5 +1,23 @@
 # Movies App
 
+## Deploy on  Heroku
+```
+heroku container:login
+
+# Create Data Base
+heroku addons:create heroku-postgresql:hobby-dev
+
+# Build image
+docker build -f Dockerfile.prod -t registry.heroku.com/$(fzf heroku apps)/web .
+docker push registry.heroku.com/$(fzf heroku apps)/web:latest
+
+# Deploy
+heroku container:release web
+
+# Run command as "python manage.py migrate"
+heroku run python manage.py migrate
+```
+
 ## Tests
 - **normal run:** 
 `docker-compose exec movies pytest`

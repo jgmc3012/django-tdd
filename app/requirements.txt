@@ -11,3 +11,12 @@ psycopg2-binary==2.8.5
 # Testing
 pytest-django==3.9.0
 pytest==5.4.1
+
+# Server
+gunicorn==20.0.4
+
+# Envs
+dj-database-url==0.5.0
+
+# Static Files
+whitenoise==5.0.1
